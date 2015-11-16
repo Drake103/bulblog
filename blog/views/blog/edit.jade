@@ -1,0 +1,24 @@
+extend layout
+block content
+    h1= title
+    form(url="/blog/new", name="post-edit", method="post", enctype="multipart/form-data")
+        div.input
+            span.label Title
+            input(type="text", name="title", value="#{post.title}")
+        div.input
+            span.label Content
+            textarea(name="content", cols="40", rows="5", value="#{post.content}")
+        div.input
+            span.label Slug
+            input(type="text", name="slug", value="#{post.slug}")
+        div.actions
+            input(type="submit", value="Save")
+block sidebar
+  .widget
+    h1 Widget
+    p
+      | Sed auctor neque eu tellus rhoncus ut
+      | eleifend nibh porttitor. Ut in nulla enim.
+    p
+      | Vivamus hendrerit arcu sed erat molestie
+      | vehicula.

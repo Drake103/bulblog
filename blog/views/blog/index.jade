@@ -1,0 +1,15 @@
+extend layout
+block content
+  each post in posts
+    .post
+      .post-title= post.title
+      .post-content= post.content
+block sidebar
+  .widget
+    h1 Widget
+    p
+      | Sed auctor neque eu tellus rhoncus ut
+      | eleifend nibh porttitor. Ut in nulla enim.
+    p
+      | Vivamus hendrerit arcu sed erat molestie
+      | vehicula.

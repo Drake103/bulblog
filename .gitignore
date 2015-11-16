@@ -1,0 +1,9 @@
+/.idea
+
+/blog/node_modules
+/blog/logs/*
+/blog/public/assets/*
+
+/admin/node_modules
+/admin/logs/*
+/admin/public/assets/*

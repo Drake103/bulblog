@@ -1,0 +1,32 @@
+{
+  "name": "bulblog",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.14.1",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^5.4.1",
+    "lodash": "^3.10.1",
+    "mongoose": "^4.1.11",
+    "morgan": "^1.6.1",
+    "multiparty": "^4.1.2",
+    "nconf": "^0.8.2",
+    "nib": "^1.1.0",
+    "stylus": "^0.52.4",
+    "winston": "^1.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-flatten": "^0.2.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.1.0",
+    "main-bower-files": "^2.9.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

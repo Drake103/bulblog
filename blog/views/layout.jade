@@ -1,0 +1,17 @@
+doctype
+html(lang=ru)
+  head
+    title #{title} - My Site
+    link(rel='stylesheet', href='/assets/style.css')
+  body
+    header
+      h1 BlogTitle
+      h5 subtitle
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus
+    script(src='/assets/script.js')
