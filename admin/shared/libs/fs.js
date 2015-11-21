@@ -3,8 +3,7 @@ import path from 'path';
 import _ from 'lodash';
 import { contains } from './utils';
 
-
-var loadDir = function (dirname, opts = {}) {
+var loadDir = function(dirname, opts = {}) {
   opts = _.extend({ excludes: ['index'], onlyExt: '.js', flat: false }, opts);
   var res = opts.flat ? [] : {};
 
@@ -38,8 +37,7 @@ var loadDir = function (dirname, opts = {}) {
 
     if (opts.flat) {
       res.push(require(fullpath));
-    }
-    else {
+    } else {
       res[name] = require(fullpath);
     }
   });

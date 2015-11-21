@@ -1,13 +1,22 @@
 import alt from '../alt';
 import PostCollection from '../collections/post';
-import EntityActions from '../base/entity_actions';
 
+class PostActions {
+  constructor() {
+    this.generateActions('updateEntities', 'entitiesFailed');
+  }
 
-class PostActions extends EntityActions {
-  constructor () {
-    super();
+  fetchEntities() {
+    this.dispatch();
 
-    this.Collection = PostCollection;
+    let posts = new PostCollection();
+    posts.fetch()
+      .done((entities) => {
+        this.actions.updateEntities(entities);
+      })
+      .fail((errorMessage) => {
+        this.actions.entitiesFailed(errorMessage);
+      });
   }
 }
 

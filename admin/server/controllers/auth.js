@@ -1,9 +1,8 @@
 import Controller from '../base/controller';
 import UserModel from '../../client/models/user';
 
-
 export default class AuthController extends Controller {
-  login (req, res, next) {
+  login(req, res, next) {
     if (req.session.token) {
       return res.json({ sucess: true });
     }
@@ -25,14 +24,14 @@ export default class AuthController extends Controller {
     });
   }
 
-  logout (req, res, next) {
+  logout(req, res, next) {
     req.session.destroy((err) => {
       if (err) return next(err);
       res.json({ sucess: true });
     });
   }
 
-  router () {
+  router() {
     this.post('/auth/login', this.login);
     this.get('/auth/logout', this.logout);
   }

@@ -1,8 +1,7 @@
 import Model from '../base/model';
 
-
 export default class PostModel extends Model {
-  urlPath () {
+  urlPath() {
     let urlPath = '/posts';
     let slug = this.slug;
 

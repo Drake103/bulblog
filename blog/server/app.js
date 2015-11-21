@@ -11,14 +11,14 @@ import apiControllers from './api_controllers';
 import mongoose from 'mongoose';
 
 class Server {
-  constructor () {
+  constructor() {
     this.app = express();
 
     this.app.set('views', __dirname + '/../views');
     this.app.set('view engine', 'jade');
   }
 
-  preRouteMiddleware () {
+  preRouteMiddleware() {
     this.app.use((req, res, next) => {
       var _domain = domain.create();
       _domain.add(req);
@@ -27,7 +27,11 @@ class Server {
       _domain.on('error', next);
     });
 
-    this.app.use(morgan(config.get('debug') ? 'dev' : 'combined', { "stream": logger.stream }));
+    this.app.use(morgan(config.get('debug') ? 'dev' : 'combined', { stream: logger.stream }));
+
+    if (config.get('env') !== 'production') {
+      this.app.use(middlewares.cors.dev);
+    }
 
     this.app.use(middlewares.stylus);
 
@@ -37,11 +41,11 @@ class Server {
     this.app.use(middlewares.lang);
   }
 
-  postRouteMiddleware () {
+  postRouteMiddleware() {
     if (config.get('debug')) {
       this.app.use(errorhandler({
         dumpExceptions: true,
-        showStack: true
+        showStack: true,
       }));
     } else {
       this.app.use((err, req, res, next) => {
@@ -53,7 +57,7 @@ class Server {
     this.app.use((req, res, next) => middlewares.notFound(res));
   }
 
-  initControllers () {
+  initControllers() {
     for (let Controller of controllers) {
       new Controller().use(this.app);
     }
@@ -63,7 +67,7 @@ class Server {
     }
   }
 
-  database (callback) {
+  database(callback) {
     mongoose.connect(config.get('mongoose:uri'));
 
     mongoose.connection.on('error', (error) => {
@@ -76,7 +80,7 @@ class Server {
     });
   }
 
-  run () {
+  run() {
     this.preRouteMiddleware();
     this.initControllers();
     this.postRouteMiddleware();

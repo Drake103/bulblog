@@ -3,11 +3,11 @@ import Layout from './layout';
 import PageHeader from './components/page_header';
 
 export default class Dashboard extends Layout {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.welcome}`;
   }
 
-  renderPartial () {
+  renderPartial() {
     return (
       <div>
         <PageHeader>{this.lang.titles.welcome}</PageHeader>

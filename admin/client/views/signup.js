@@ -5,17 +5,16 @@ import PageHeader from './components/page_header';
 import UserModel from '../models/user';
 import auth from '../modules/auth';
 
-
 export default class Signup extends Form {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.signup}`;
   }
 
-  initState () {
+  initState() {
     return { model: {} };
   }
 
-  save (model) {
+  save(model) {
     if (model.confirm_password !== model.password) {
       return this.showError('invalid_confirm_password');
     }
@@ -28,7 +27,7 @@ export default class Signup extends Form {
     dfd.fail((xhr) => this.handleAPIError(xhr));
   }
 
-  render () {
+  render() {
     return (<div className='l-layout p-signup'>
       <div className='l-content'>
         <PageHeader>{this.lang.titles.signup}</PageHeader>

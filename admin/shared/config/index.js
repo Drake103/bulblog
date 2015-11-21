@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import deepExtend from 'underscore-deep-extend';
-import { contains } from '../libs/utils';
-
+import { contains } from 'libs/utils';
 
 _.mixin({ deepExtend: deepExtend(_) });
 
@@ -10,7 +9,7 @@ var
   config, defaults, readConfigs,
   nodeEnv = process.env.NODE_ENV || 'development';
 
-readConfigs = function (path = '') {
+readConfigs = function(path = '') {
   var
     envConfPath = `${__dirname}/${path}${nodeEnv}.js`,
     localConfPath = `${__dirname}/${path}local.js`,
@@ -29,7 +28,7 @@ readConfigs = function (path = '') {
 
 defaults = {
   env: nodeEnv,
-  debug: !contains(['staging', 'production'], nodeEnv)
+  debug: !contains(['staging', 'production'], nodeEnv),
 };
 
 config = _.deepExtend(defaults, ...readConfigs());

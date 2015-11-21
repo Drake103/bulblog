@@ -1,15 +1,14 @@
 import Backbone from 'backbone';
 import _ from 'lodash';
-import config from '../../config';
+import config from 'config';
 import $ from 'jquery';
 
-
 export default class Model extends Backbone.Model {
-  baseUrl () {
+  baseUrl() {
     return `${this.apiRoot}${_.result(this, 'urlPath')}`;
   }
 
-  url () {
+  url() {
     let url = this.baseUrl();
 
     if (this.id) {

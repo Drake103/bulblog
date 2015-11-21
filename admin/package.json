@@ -20,7 +20,6 @@
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "griddle-react": "^0.2.14",
-    "gulp": "^3.9.0",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
@@ -33,15 +32,16 @@
     "q": "^1.4.1",
     "querystring": "^0.2.0",
     "react": "^0.13.3",
-    "request": "^2.61.0",
+    "request": "^2.67.0",
     "underscore": "^1.8.3",
     "underscore-deep-extend": "0.0.5",
-    "winston": "^2.1.0"
+    "winston": "^2.1.1"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
     "browserify": "^11.1.0",
     "envify": "^3.4.0",
+    "gulp": "^3.9.0",
     "gulp-jscs": "^2.0.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-rename": "^1.2.2",

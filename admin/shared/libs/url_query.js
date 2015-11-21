@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-module.exports = function (url, params) {
+module.exports = function(url, params) {
   if (!params) {
     return url;
   }

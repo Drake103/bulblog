@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import env from '../../libs/env';
-import langs from '../../config/langs';
-import {format} from '../../libs/utils';
-
+import env from 'libs/env';
+import langs from 'config/langs';
+import {format} from 'libs/utils';
 
 export default function (error) {
   if (!process.browser) {

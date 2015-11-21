@@ -1,8 +1,7 @@
 import Model from '../base/model';
 
-
 export default class UserModel extends Model {
-  urlPath () {
+  urlPath() {
     let urlPath = '/users';
     let username = this.username;
 
