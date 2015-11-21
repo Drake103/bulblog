@@ -22,7 +22,7 @@ export default class Router extends BaseRouter {
     this.route('/', 'dashboard.index');
     this.route('/dashboard', 'dashboard.index');
     this.route('/posts', 'post.list');
-    this.route('/posts/:postId', 'post.card');
+    this.route('/posts/:slug', 'post.card');
 
     this.route('/signin', 'session.signin');
     this.route('/signup', 'session.signup');

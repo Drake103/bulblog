@@ -4,9 +4,9 @@ import Model from '../base/model';
 export default class PostModel extends Model {
   urlPath () {
     let urlPath = '/posts';
-    let postId = this._id;
+    let slug = this.slug;
 
-    if (postId) urlPath += `/${postId}`;
+    if (slug) urlPath += `/${slug}`;
 
     return urlPath;
   }

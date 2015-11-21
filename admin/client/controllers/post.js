@@ -4,19 +4,19 @@ import Controller from '../base/controller';
 import PostListView from '../views/post/list';
 import PostCardView from '../views/post/card';
 import PostModel from '../models/post';
-import PostsCollection from '../collections/posts';
+import PostCollection from '../collections/post';
 
 
 export default class PostController extends Controller {
   list (ctx, done) {
-    let posts = this.wrapModel(new PostsCollection());
+    let posts = this.wrapModel(new PostCollection());
     this.xhrs.posts = posts.fetch();
 
     let dfd = Q.all([this.xhrs.posts]);
     dfd.done(() => {
       this.setInitData({
         PostStore: {
-          posts: posts.toJSON()
+          results: posts.toJSON()
         }
       });
 
@@ -26,8 +26,7 @@ export default class PostController extends Controller {
 
   card (ctx, done) {
     let post = this.wrapModel(new PostModel());
-
-    post._id = ctx.postId;
+    post.slug = ctx.params.slug;
     this.xhrs.post = post.fetch();
 
     let dfd = Q.all([this.xhrs.post]);
