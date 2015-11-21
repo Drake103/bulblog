@@ -1,7 +1,7 @@
-import { getValue } from '../../libs/utils';
+import { getValue } from 'libs/utils';
 
 export default class EntityStore {
-  constructor () {
+  constructor() {
     this.results = [];
     this.currentPage = 0;
     this.maxPages = 0;
@@ -11,20 +11,20 @@ export default class EntityStore {
     this.bindListeners();
   }
 
-  bindListeners () {
+  bindListeners() {
     throw 'bindListeners is not overrided';
   }
 
-  handleUpdateEntities (results) {
+  handleUpdateEntities(results) {
     this.results = results;
     this.errorMessage = null;
   }
 
-  handleFetchEntities () {
+  handleFetchEntities() {
     this.results = [];
   }
 
-  handleEntitiesFailed (errorMessage){
+  handleEntitiesFailed(errorMessage) {
     this.errorMessage = errorMessage;
   }
 }

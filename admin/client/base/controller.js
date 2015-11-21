@@ -1,23 +1,22 @@
 import React from 'react';
 import alt from '../alt';
 
-
 export default class Controller {
-  constructor () {
+  constructor() {
     this.xhrs = {};
   }
 
   // Fake method for client side
   // wrap all models and collections by this method
-  wrapModel (model) {
+  wrapModel(model) {
     return model;
   }
 
-  setInitData (data) {
+  setInitData(data) {
     alt.bootstrap(JSON.stringify(data));
   }
 
-  destroy () {
+  destroy() {
     for (let key in this.xhrs) {
       if (this.xhrs[key] !== 4) {
         this.xhrs[key].abort();
@@ -25,7 +24,7 @@ export default class Controller {
     }
   }
 
-  renderView (View, callback) {
+  renderView(View, callback) {
     let view = React.render(<View />, window.appNode, callback);
     window.titleNode.innerText = view.title();
   }

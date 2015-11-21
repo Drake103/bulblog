@@ -9,8 +9,8 @@ export default class Navbar extends Component {
 
   getLinks () {
     return [
-      { href: '/', text: this.lang.links.dashboard },
-      { href: '/posts', text: this.lang.links.posts }
+      { href: './', text: this.lang.links.dashboard },
+      { href: './posts', text: this.lang.links.posts }
     ];
   }
 

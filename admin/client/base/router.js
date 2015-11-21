@@ -2,15 +2,14 @@ import React from 'react';
 import page from 'page';
 import vent from '../modules/vent';
 
-
 export default class Router {
-  _mapRoutes () {
+  _mapRoutes() {
     if (this.middleware) this.middleware();
     if (this.redirect) this.redirect();
     if (this.router) this.router();
   }
 
-  run () {
+  run() {
     this.page = page;
     this.ctor = null;
 
@@ -21,15 +20,15 @@ export default class Router {
     vent.on('routeTo', (url) => this.routeTo(url));
   }
 
-  routeTo (url) {
+  routeTo(url) {
     this.page(url);
   }
 
-  use (...args) {
+  use(...args) {
     this.page(...args);
   }
 
-  route (url, action) {
+  route(url, action) {
     let temp = action.split('.');
     let method = temp[1];
     let Controller = this.controllers[temp[0]];
@@ -55,7 +54,7 @@ export default class Router {
     });
   }
 
-  beforeRoute (ctx) {
+  beforeRoute(ctx) {
     if (this.ctor) {
       this.ctor.destroy();
       this.ctor = null;
@@ -64,11 +63,11 @@ export default class Router {
     vent.trigger('route:before', ctx);
   }
 
-  afterRoute (ctx) {
+  afterRoute(ctx) {
     vent.trigger('route:after', ctx);
   }
 
-  createQuery (ctx, next) {
+  createQuery(ctx, next) {
     let query = {};
     let params = ctx.querystring.split('&');
 

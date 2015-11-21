@@ -2,23 +2,22 @@ import BaseRouter from './base/router';
 import vent from './modules/vent';
 import currentUser from './stores/current_user';
 
-
 export default class Router extends BaseRouter {
-  run () {
+  run() {
     super.run();
     vent.on('user:signin', () => this.routeTo('/'));
     vent.on('user:signout', () => this.routeTo('/'));
   }
 
-  middleware () {
+  middleware() {
     //this.use(/^((?!(\/signin|\/signup)).)*$/, this.auth);
   }
 
-  redirect () {
+  redirect() {
 
   }
 
-  router () {
+  router() {
     this.route('/', 'dashboard.index');
     this.route('/dashboard', 'dashboard.index');
     this.route('/posts', 'post.list');

@@ -3,9 +3,8 @@ import Component from '../base/component';
 import Navbar from './components/navbar';
 import PageHeader from './components/page_header';
 
-
 export default class Layout extends Component {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.welcome}`;
   }
 
@@ -13,11 +12,11 @@ export default class Layout extends Component {
 
   }
 
-  render () {
+  render() {
     return (
-      <div id="wrapper">
+      <div id='wrapper'>
         <Navbar />
-        <div id="page-wrapper">
+        <div id='page-wrapper'>
           {this.renderPartial()}
         </div>
       </div>);

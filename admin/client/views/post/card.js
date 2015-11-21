@@ -4,15 +4,15 @@ import PageHeader from '../components/page_header';
 import postStore from '../../stores/post';
 
 export default class PostCard extends Layout {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.welcome}`;
   }
 
-  initState () {
+  initState() {
     return postStore.getState();
   }
 
-  renderPartial () {
+  renderPartial() {
     let { post } = this.state;
 
     return (

@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import logger from '../../libs/logger';
-import langs from '../../config/langs';
+import logger from 'libs/logger';
+import langs from 'config/langs';
 import middlewares from '../middlewares';
 
 // ERRORS CODES
@@ -10,10 +10,10 @@ import middlewares from '../middlewares';
 // NOT FOUND = 404;
 
 export default class Controller {
-  constructor () {
+  constructor() {
   }
 
-  _bind (callbacks) {
+  _bind(callbacks) {
     if (_.isArray(callbacks)) {
       for (let i = 0; i < callbacks.length; i++) {
         callbacks[i] = callbacks[i].bind(this);
@@ -25,7 +25,7 @@ export default class Controller {
     return callbacks;
   }
 
-  _handler (type, route, callbacks) {
+  _handler(type, route, callbacks) {
     let boundCallbacks = this._bind(callbacks);
 
     if (_.isArray(route)) {
@@ -37,23 +37,23 @@ export default class Controller {
     }
   }
 
-  get (url, ...callbacks) {
+  get(url, ...callbacks) {
     this._handler('get', url, callbacks);
   }
 
-  put (url, ...callbacks) {
+  put(url, ...callbacks) {
     this._handler('put', url, callbacks);
   }
 
-  post (url, ...callbacks) {
+  post(url, ...callbacks) {
     this._handler('post', url, callbacks);
   }
 
-  delete (url, ...callbacks) {
+  delete(url, ...callbacks) {
     this._handler('delete', url, callbacks);
   }
 
-  use (app) {
+  use(app) {
     this._app = app;
 
     if (this.middleware) {

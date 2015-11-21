@@ -1,18 +1,17 @@
 import _ from 'lodash';
 import React from 'react';
-import config from '../../config';
-import langs from '../../config/langs';
+import config from 'config';
+import langs from 'config/langs';
 import alt from '../../client/alt';
 import Component from '../../client/base/component';
 
-
 export default {
-  setInitData (data) {
+  setInitData(data) {
     data.CurrentUserStore = { user: this.req.user };
     alt.bootstrap(JSON.stringify(data));
   },
 
-  wrapModel (model) {
+  wrapModel(model) {
     // Add token to  model, it's needed to send requests to API
     model.security = {
       token: _.result(this.req, 'user.token'),
@@ -21,7 +20,7 @@ export default {
     return model;
   },
 
-  renderView (ViewClass) {
+  renderView(ViewClass) {
     let { res, req } = this;
 
     // Hack to set language to render html

@@ -1,11 +1,12 @@
 export default class EntityActions {
 
-  updateEntities(entities) {
+  static updateEntities(entities) {
+    console.log(entities);
     this.dispatch(entities);
   }
 
-  fetchEntities() {
-    if(!this.Collection) throw 'this.Collection is not set.';
+  static fetchEntities() {
+    if (!this.Collection) throw 'this.Collection is not set.';
 
     this.dispatch();
 
@@ -19,7 +20,7 @@ export default class EntityActions {
       });
   }
 
-  entitiesFailed(errorMessage) {
+  static entitiesFailed(errorMessage) {
     this.dispatch(errorMessage);
   }
 }

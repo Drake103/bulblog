@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import $ from 'jquery';
 import { Collection } from 'backbone';
-import config from '../../config';
-import urlQuery from '../../libs/url_query';
-
+import config from 'config';
+import urlQuery from 'libs/url_query';
 
 export default class BaseCollection extends Collection {
-  url () {
+  url() {
     let params = {};
     let url = `${this.apiRoot}${_.result(this, 'urlPath')}`;
 
@@ -21,7 +20,7 @@ export default class BaseCollection extends Collection {
     return urlQuery(url, params);
   }
 
-  parse (resp) {
+  parse(resp) {
     this.total = resp.total;
     this.page = resp.page;
     this.perPage = resp.per_page;
@@ -29,7 +28,7 @@ export default class BaseCollection extends Collection {
     return resp.collection;
   }
 
-  fetchCount () {
+  fetchCount() {
     let dfd = this.$(`${this.url()}/count`);
     dfd.done((resp) => {
       this.count = resp.count;

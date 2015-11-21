@@ -7,23 +7,28 @@ import Component from '../../base/component';
 import _ from 'lodash';
 
 export default class PostList extends Layout {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.posts}`;
   }
 
-  renderPartial () {
+  renderPartial() {
     return (<PostDataGrid />);
   }
 }
 
-class PostDataGrid extends Component {
-  initState () {
-    return PostStore.getState();
+class PostDataGrid extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = PostStore.getState();
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentWillUnmount = this.componentWillUnmount.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
+    console.log('postDataGrid is mounted');
     PostStore.listen(this.onChange);
-
     PostActions.fetchEntities();
   }
 
@@ -35,9 +40,8 @@ class PostDataGrid extends Component {
     this.setState(state);
   }
 
-  render () {
+  render() {
     let posts = this.state.results;
-    console.log(this.state);
     let postRows = _.map(posts, p => <PostRow key={p._id} post={p} />);
 
     return (
@@ -48,12 +52,12 @@ class PostDataGrid extends Component {
         </tr>
         {postRows}
       </table>
-    )
+    );
   }
 }
 
 class PostRow {
-  render () {
+  render() {
     let post = this.props.post;
 
     return (

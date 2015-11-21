@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import langs from '../../config/langs';
+import langs from 'config/langs';
 
 // Returns HTTP error.
 //

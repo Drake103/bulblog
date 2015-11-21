@@ -1,23 +1,22 @@
 import _ from 'lodash';
 import $ from 'jquery';
-import config from '../../config';
+import config from 'config';
 import Model from '../base/model';
 import vent from './vent';
 import currentUserActions from '../actions/current_user';
 
-
 export default {
-  setTokenHeaders (user) {
+  setTokenHeaders(user) {
     let headers = { 'X-Access-Token': _.result(user, 'token.value') };
     $.ajaxSetup({ headers });
   },
 
-  unsetTokenHeaders () {
+  unsetTokenHeaders() {
     let headers = { 'X-Access-Token': '' };
     $.ajaxSetup({ headers });
   },
 
-  signin (data) {
+  signin(data) {
     let user = null;
 
     let dfd = $.ajax({
@@ -44,7 +43,7 @@ export default {
     return dfd;
   },
 
-  signout () {
+  signout() {
     let dfd = $.ajax('/auth/logout');
 
     dfd.done(() => {

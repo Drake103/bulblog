@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import querystring from 'querystring';
 
-
-export function getParams () {
+export function getParams() {
   return querystring.parse(window.location.search.slice(1)) || {};
 };
 
-export function buildUrl (url, params) {
+export function buildUrl(url, params) {
   var query = querystring.stringify(params);
 
   if (query.length) {
@@ -16,7 +15,7 @@ export function buildUrl (url, params) {
   return url;
 };
 
-export function overrideUrl (params) {
+export function overrideUrl(params) {
   var
     query,
     url = window.location.pathname;

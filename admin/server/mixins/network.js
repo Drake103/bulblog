@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import request from 'request';
 import Q from 'q';
-import { contains } from '../../libs/utils';
-
+import { contains } from 'libs/utils';
 
 const METHOD_MAP = {
   create: 'POST',
@@ -24,7 +23,7 @@ let parseBody = (body) => {
 };
 
 let network = {
-  request (options, callback) {
+  request(options, callback) {
     if (!options.url) {
       throw new Error('Provide URL via options');
     }
@@ -59,7 +58,7 @@ let network = {
     });
   },
 
-  $ (opts = {}) {
+  $(opts = {}) {
     let url = '';
     let dfd = Q.defer();
     let data = opts.data || {};
@@ -107,7 +106,7 @@ let network = {
     return dfd.promise;
   },
 
-  sync (method, model, params = {}) {
+  sync(method, model, params = {}) {
     let dfd = Q.defer();
     let data = params.data || params.attrs || {};
     let token = _.result(this, 'security.token');

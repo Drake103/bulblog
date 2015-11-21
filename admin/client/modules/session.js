@@ -2,16 +2,15 @@ import Model from '../base/model';
 import Backbone from 'backbone';
 import vent from './vent';
 
-
 class Session extends Model {
-  defaults () {
+  defaults() {
     return {
       _id: 'static',
       timestamp: 0,
     };
   }
 
-  initialize () {
+  initialize() {
     if (!process.browser) {
       return;
     }
@@ -20,14 +19,14 @@ class Session extends Model {
     this.fetch();
   }
 
-  reset () {
+  reset() {
     this.destroy();
     this.clear({ silent: true });
     this.set(this.defaults(), { silent: true });
     this.save();
   }
 
-  updated () {
+  updated() {
     this.set({ timestamp: Date.now() }, { silent: true });
     this.save();
   }

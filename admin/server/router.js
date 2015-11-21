@@ -6,9 +6,8 @@ import ClientRouter from '../client/router';
 import ClientController from '../client/base/controller';
 import { sync, $ } from './mixins/network';
 import { renderView, wrapModel, setInitData } from './mixins/isomorphic_controller';
-import langs from '../config/langs';
-import config from '../config';
-
+import langs from 'config/langs';
+import config from 'config';
 
 // Override client methods to call them on server side
 Backbone.Model.prototype.sync = Backbone.Collection.prototype.sync = sync;
@@ -19,20 +18,20 @@ ClientController.prototype.wrapModel = wrapModel;
 ClientController.prototype.setInitData = setInitData;
 
 export default class Router extends ClientRouter {
-  run (app) {
+  run(app) {
     this._app = app;
     this._mapRoutes();
   }
 
-  use (...args) {
+  use(...args) {
     this._app.get(...args);
   }
 
-  redirect () {
+  redirect() {
 
   }
 
-  route (url, action) {
+  route(url, action) {
     let temp = action.split('.');
     let method = temp[1];
     let Controller = this.controllers[temp[0]];

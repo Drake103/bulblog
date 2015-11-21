@@ -6,9 +6,8 @@ import PostCardView from '../views/post/card';
 import PostModel from '../models/post';
 import PostCollection from '../collections/post';
 
-
 export default class PostController extends Controller {
-  list (ctx, done) {
+  list(ctx, done) {
     let posts = this.wrapModel(new PostCollection());
     this.xhrs.posts = posts.fetch();
 
@@ -16,15 +15,15 @@ export default class PostController extends Controller {
     dfd.done(() => {
       this.setInitData({
         PostStore: {
-          results: posts.toJSON()
-        }
+          results: posts.toJSON(),
+        },
       });
 
       this.renderView(PostListView, done);
     });
   }
 
-  card (ctx, done) {
+  card(ctx, done) {
     let post = this.wrapModel(new PostModel());
     post.slug = ctx.params.slug;
     this.xhrs.post = post.fetch();
@@ -33,8 +32,8 @@ export default class PostController extends Controller {
     dfd.done(() => {
       this.setInitData({
         PostStore: {
-          post: post.toJSON()
-        }
+          post: post.toJSON(),
+        },
       });
 
       this.renderView(PostCardView, done);

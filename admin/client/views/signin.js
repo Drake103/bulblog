@@ -3,22 +3,21 @@ import Form from '../base/form';
 import PageHeader from './components/page_header';
 import auth from '../modules/auth';
 
-
 export default class Signin extends Form {
-  title () {
+  title() {
     return `${this.lang.brand.name} | ${this.lang.titles.signin}`;
   }
 
-  initState () {
+  initState() {
     return { model: {} };
   }
 
-  save (model) {
+  save(model) {
     let dfd = auth.signin(model);
     dfd.fail((xhr) => this.handleAPIError(xhr));
   }
 
-  render () {
+  render() {
     return (<div className='l-layout p-signin'>
       <div className='l-content'>
         <PageHeader>{this.lang.titles.signin}</PageHeader>
