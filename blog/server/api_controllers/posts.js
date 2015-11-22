@@ -3,9 +3,8 @@ import config from '../config';
 import ModelController from '../base/model_controller';
 import PostModel from '../models/post';
 
-
 export default class PostsController extends ModelController {
-  constructor () {
+  constructor() {
     super();
     this.urlPrefix = '/posts';
     this.Model = PostModel;
@@ -15,12 +14,13 @@ export default class PostsController extends ModelController {
     this.create.type = 'post';
 
     this.get.url = '/:slug';
+
     //this.get.auth = true;
 
     //this.list.auth = true;
   }
 
-  get (req, res, next) {
+  get(req, res, next) {
     var slug = req.params.slug;
 
     this.Model.findOne({ slug }).lean().exec((err, post) => {

@@ -23,7 +23,7 @@ export default class BaseCollection extends Collection {
   parse(resp) {
     this.total = resp.total;
     this.page = resp.page;
-    this.perPage = resp.per_page;
+    this.perPage = resp.perPage;
 
     return resp.collection;
   }

@@ -3,9 +3,8 @@ import { getValue } from 'libs/utils';
 export default class EntityStore {
   constructor() {
     this.results = [];
-    this.currentPage = 0;
-    this.maxPages = 0;
-    this.resultsPerPage = 0;
+    this.page = 1;
+    this.perPage = 20;
     this.loading = false;
 
     this.bindListeners();
@@ -26,5 +25,13 @@ export default class EntityStore {
 
   handleEntitiesFailed(errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  handleUpdatePerPage(perPage) {
+    this.perPage = perPage;
+  }
+
+  handleUpdatePage(page) {
+    this.page = page;
   }
 }
