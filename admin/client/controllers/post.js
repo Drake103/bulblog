@@ -16,6 +16,9 @@ export default class PostController extends Controller {
       this.setInitData({
         PostStore: {
           results: posts.toJSON(),
+          maxPages: Math.ceil(posts.total / posts.perPage),
+          page: posts.page,
+          perPage: posts.perPage,
         },
       });
 

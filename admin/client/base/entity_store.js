@@ -3,7 +3,7 @@ import { getValue } from 'libs/utils';
 export default class EntityStore {
   constructor() {
     this.results = [];
-    this.page = 0;
+    this.page = 1;
     this.perPage = 20;
     this.maxPages = 100;
     this.loading = false;
@@ -33,9 +33,11 @@ export default class EntityStore {
     if (page) {
       this.page = page;
     }
+
     if (perPage) {
       this.perPage = perPage;
     }
+
     if (maxPages) {
       this.maxPages = maxPages;
     }

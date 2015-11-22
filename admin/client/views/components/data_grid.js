@@ -27,7 +27,6 @@ export default class DataGrid extends Component {
 
   componentDidMount() {
     PostStore.listen(this.onChange);
-    PostActions.fetchEntities();
   }
 
   componentWillUnmount() {
