@@ -17,6 +17,14 @@ export default class BaseCollection extends Collection {
       params.filter = this.filterModel;
     }
 
+    if (this.page) {
+      params.page = this.page;
+    }
+
+    if (this.perPage) {
+      params.perPage = this.perPage;
+    }
+
     return urlQuery(url, params);
   }
 

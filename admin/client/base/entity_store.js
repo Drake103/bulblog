@@ -3,15 +3,16 @@ import { getValue } from 'libs/utils';
 export default class EntityStore {
   constructor() {
     this.results = [];
-    this.page = 1;
+    this.page = 0;
     this.perPage = 20;
+    this.maxPages = 100;
     this.loading = false;
 
-    this.bindListeners();
+    this._bindListeners();
   }
 
-  bindListeners() {
-    throw 'bindListeners is not overrided';
+  _bindListeners() {
+    throw '_bindListeners is not overrided';
   }
 
   handleUpdateEntities(results) {
@@ -27,11 +28,16 @@ export default class EntityStore {
     this.errorMessage = errorMessage;
   }
 
-  handleUpdatePerPage(perPage) {
-    this.perPage = perPage;
-  }
-
-  handleUpdatePage(page) {
-    this.page = page;
+  handleUpdateState(state) {
+    let {page, perPage, maxPages} = state;
+    if (page) {
+      this.page = page;
+    }
+    if (perPage) {
+      this.perPage = perPage;
+    }
+    if (maxPages) {
+      this.maxPages = maxPages;
+    }
   }
 }

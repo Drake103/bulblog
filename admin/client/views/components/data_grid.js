@@ -55,7 +55,7 @@ export default class DataGrid extends Component {
 
   //this method handles determining the page size
   setPageSize(perPage) {
-    PostActions.updatePerPage(perPage);
+    PostActions.updateState({perPage});
   }
 
   getExternalData(page) {
