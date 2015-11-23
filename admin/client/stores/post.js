@@ -8,7 +8,9 @@ class PostStore extends EntityStore {
       handleUpdateEntities: PostActions.UPDATE_ENTITIES,
       handleFetchEntities: PostActions.FETCH_ENTITIES,
       handleEntitiesFailed: PostActions.ENTITIES_FAILED,
-      handleUpdateState: PostActions.UPDATE_STATE,
+      handleUpdatePage: PostActions.UPDATE_PAGE,
+      handleUpdatePerPage: PostActions.UPDATE_PER_PAGE,
+      handleUpdateMaxPages: PostActions.UPDATE_MAX_PAGES,
     });
   }
 }

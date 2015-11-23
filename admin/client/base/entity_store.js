@@ -3,10 +3,11 @@ import { getValue } from 'libs/utils';
 export default class EntityStore {
   constructor() {
     this.results = [];
-    this.page = 1;
-    this.perPage = 20;
-    this.maxPages = 100;
+    this.page = 0;
+    this.perPage = 10;
+    this.maxPages = 0;
     this.loading = false;
+    this.filter = null;
 
     this._bindListeners();
   }
@@ -28,18 +29,19 @@ export default class EntityStore {
     this.errorMessage = errorMessage;
   }
 
-  handleUpdateState(state) {
-    let {page, perPage, maxPages} = state;
-    if (page) {
-      this.page = page;
-    }
+  handleUpdatePage(page) {
+    this.page = page;
+  }
 
-    if (perPage) {
-      this.perPage = perPage;
-    }
+  handleUpdatePerPage(perPage) {
+    this.perPage = perPage;
+  }
 
-    if (maxPages) {
-      this.maxPages = maxPages;
-    }
+  handleUpdateMaxPages(maxPages) {
+    this.maxPages = maxPages;
+  }
+
+  handleSetFilter(filter) {
+    this.filter = filter;
   }
 }

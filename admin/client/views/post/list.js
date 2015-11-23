@@ -30,7 +30,8 @@ class PostDataGrid extends React.Component {
   componentDidMount() {
     console.log('postDataGrid is mounted');
     PostStore.listen(this.onChange);
-    PostActions.fetchEntities();
+
+    //PostActions.fetchEntities();
   }
 
   componentWillUnmount() {

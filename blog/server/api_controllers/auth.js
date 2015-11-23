@@ -3,9 +3,8 @@ import config from '../config';
 import ModelController from '../base/model_controller';
 import User from '../models/user';
 
-
 export default class AuthController extends ModelController {
-  constructor () {
+  constructor() {
     super();
     this.logPrefix = 'auth-controller';
     this.urlPrefix = '/auth';
@@ -15,28 +14,28 @@ export default class AuthController extends ModelController {
     this.login.type = 'post';
   }
 
-  generateToken (user) {
+  generateToken(user) {
     var
       expires = new Date(),
       claims = {
         sub: user._id,
         iss: 'https://rtap.com',
-        permissions: ''
+        permissions: '',
       },
 
       token = jwt.sign(claims, config.secret, {
-        expiresInMinutes: config.jwt.expires
+        expiresInMinutes: config.jwt.expires,
       });
 
     expires.setMinutes(expires.getMinutes() + config.jwt.expires);
 
     return {
       value: token,
-      expires: expires
+      expires: expires,
     };
   }
 
-  login (req, res, next) {
+  login(req, res, next) {
     var { username, password } = req.body;
 
     if (!username || !password) {

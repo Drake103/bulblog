@@ -15,7 +15,7 @@ export default class ModelController extends Controller {
     this.auth = false;
 
     this.defaultPage = 1;
-    this.defaultPerPage = 20;
+    this.defaultPerPage = 10;
     this.maxPerPage = 100;
 
     this.create.type = 'post';
