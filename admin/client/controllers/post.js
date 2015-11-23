@@ -10,12 +10,14 @@ export default class PostController extends Controller {
   list(ctx, done) {
     let posts = this.wrapModel(new PostCollection());
     this.xhrs.posts = posts.fetch();
-
     let dfd = Q.all([this.xhrs.posts]);
     dfd.done(() => {
       this.setInitData({
         PostStore: {
           results: posts.toJSON(),
+          maxPages: Math.ceil(posts.total / posts.perPage),
+          page: posts.page - 1,
+          perPage: posts.perPage,
         },
       });
 

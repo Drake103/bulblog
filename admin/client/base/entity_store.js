@@ -3,16 +3,17 @@ import { getValue } from 'libs/utils';
 export default class EntityStore {
   constructor() {
     this.results = [];
-    this.currentPage = 0;
+    this.page = 0;
+    this.perPage = 10;
     this.maxPages = 0;
-    this.resultsPerPage = 0;
     this.loading = false;
+    this.filter = null;
 
-    this.bindListeners();
+    this._bindListeners();
   }
 
-  bindListeners() {
-    throw 'bindListeners is not overrided';
+  _bindListeners() {
+    throw '_bindListeners is not overrided';
   }
 
   handleUpdateEntities(results) {
@@ -26,5 +27,21 @@ export default class EntityStore {
 
   handleEntitiesFailed(errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  handleUpdatePage(page) {
+    this.page = page;
+  }
+
+  handleUpdatePerPage(perPage) {
+    this.perPage = perPage;
+  }
+
+  handleUpdateMaxPages(maxPages) {
+    this.maxPages = maxPages;
+  }
+
+  handleSetFilter(filter) {
+    this.filter = filter;
   }
 }

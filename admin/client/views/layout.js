@@ -16,7 +16,7 @@ export default class Layout extends Component {
     return (
       <div id='wrapper'>
         <Navbar />
-        <div id='page-wrapper'>
+        <div id='page-content-wrapper'>
           {this.renderPartial()}
         </div>
       </div>);

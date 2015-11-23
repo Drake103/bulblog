@@ -3,9 +3,8 @@ import { contains } from '../libs/utils';
 import Controller from './controller';
 import middlewares from '../middlewares';
 
-
 export default class ModelController extends Controller {
-  constructor () {
+  constructor() {
     super();
 
     this.urlPrefix = '';
@@ -16,7 +15,7 @@ export default class ModelController extends Controller {
     this.auth = false;
 
     this.defaultPage = 1;
-    this.defaultPerPage = 20;
+    this.defaultPerPage = 10;
     this.maxPerPage = 100;
 
     this.create.type = 'post';
@@ -28,7 +27,7 @@ export default class ModelController extends Controller {
     this.delete.url = '/:id';
   }
 
-  router () {
+  router() {
     if (!this.actions) {
       throw new Error('Actions are not specified');
     }
@@ -61,23 +60,23 @@ export default class ModelController extends Controller {
     }
   }
 
-  create (req, res) {
+  create(req, res) {
     res.json({ message: 'Empty method' });
   }
 
-  update (req, res) {
+  update(req, res) {
     res.json({ message: 'Empty method' });
   }
 
-  get (req, res) {
+  get(req, res) {
     res.json({ message: 'Empty method' });
   }
 
-  delete (req, res) {
+  delete(req, res) {
     res.json({ message: 'Empty method' });
   }
 
-  list (req, res, next) {
+  list(req, res, next) {
     var
       order = '_id',
       filters = {};
@@ -110,7 +109,7 @@ export default class ModelController extends Controller {
     this.paginate(req, res, next, query, filters);
   }
 
-  paginate (req, res, next, query, filters) {
+  paginate(req, res, next, query, filters) {
     var { page, perPage } = this.getPagination(req);
 
     var error = this.validatePagination(page, perPage);
@@ -138,24 +137,23 @@ export default class ModelController extends Controller {
 
           if (this.setAdditionalFields) {
             this.setAdditionalFields(req, next, collection, () => {
-              res.json({ total: count, page, per_page: perPage, collection });
+              res.json({ total: count, page, perPage, collection });
             });
-          }
-          else {
-            res.json({ total: count, page, per_page: perPage, collection });
+          } else {
+            res.json({ total: count, page, perPage, collection });
           }
         });
       });
   }
 
-  getPagination (req) {
+  getPagination(req) {
     var page = req.query.page || this.defaultPage;
-    var perPage = req.query.per_page || this.defaultPerPage;
+    var perPage = req.query.perPage || this.defaultPerPage;
 
     return { page, perPage };
   }
 
-  validatePagination (page, perPage) {
+  validatePagination(page, perPage) {
     var error = {};
 
     page = parseInt('' + page, 10);
@@ -165,7 +163,7 @@ export default class ModelController extends Controller {
 
     perPage = parseInt('' + perPage, 10);
     if (isNaN(perPage)) {
-      error.per_page = 'bad_int_value';
+      error.perPage = 'bad_int_value';
     }
 
     if (!_.isEmpty(error)) {
@@ -173,10 +171,9 @@ export default class ModelController extends Controller {
     }
 
     if (perPage <= 0) {
-      error.per_page = 'less_than_allowed';
-    }
-    else if (perPage > this.maxPerPage) {
-      error.per_page = 'more_than_allowed';
+      error.perPage = 'less_than_allowed';
+    } else if (perPage > this.maxPerPage) {
+      error.perPage = 'more_than_allowed';
     }
 
     if (page <= 0) {
@@ -186,7 +183,7 @@ export default class ModelController extends Controller {
     return error;
   }
 
-  getListFilters (req) {
+  getListFilters(req) {
     var filter = {};
 
     for (let key in req.query) {
@@ -218,7 +215,7 @@ export default class ModelController extends Controller {
     return filter;
   }
 
-  getListOrder (req) {
+  getListOrder(req) {
     var
       { order } = req.query,
       field = _.startsWith(order, '-') ? order.substr(1) : order;

@@ -3,11 +3,14 @@ import EntityStore from '../base/entity_store';
 import PostActions from '../actions/post';
 
 class PostStore extends EntityStore {
-  bindListeners() {
+  _bindListeners() {
     this.bindListeners({
       handleUpdateEntities: PostActions.UPDATE_ENTITIES,
       handleFetchEntities: PostActions.FETCH_ENTITIES,
       handleEntitiesFailed: PostActions.ENTITIES_FAILED,
+      handleUpdatePage: PostActions.UPDATE_PAGE,
+      handleUpdatePerPage: PostActions.UPDATE_PER_PAGE,
+      handleUpdateMaxPages: PostActions.UPDATE_MAX_PAGES,
     });
   }
 }

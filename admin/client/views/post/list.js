@@ -4,6 +4,7 @@ import PageHeader from '../components/page_header';
 import PostStore from '../../stores/post';
 import PostActions from '../../actions/post';
 import Component from '../../base/component';
+import DataGrid from '../components/data_grid';
 import _ from 'lodash';
 
 export default class PostList extends Layout {
@@ -12,7 +13,7 @@ export default class PostList extends Layout {
   }
 
   renderPartial() {
-    return (<PostDataGrid />);
+    return (<DataGrid />);
   }
 }
 
@@ -29,7 +30,8 @@ class PostDataGrid extends React.Component {
   componentDidMount() {
     console.log('postDataGrid is mounted');
     PostStore.listen(this.onChange);
-    PostActions.fetchEntities();
+
+    //PostActions.fetchEntities();
   }
 
   componentWillUnmount() {

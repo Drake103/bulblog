@@ -4,7 +4,13 @@ import { Collection } from 'backbone';
 import config from 'config';
 import urlQuery from 'libs/url_query';
 
-export default class BaseCollection extends Collection {
+export default class PaginatedCollection extends Collection {
+  constructor() {
+    super();
+
+    _.bindAll(this, 'parse', 'url', 'fetchCount');
+  }
+
   url() {
     let params = {};
     let url = `${this.apiRoot}${_.result(this, 'urlPath')}`;
@@ -17,11 +23,11 @@ export default class BaseCollection extends Collection {
       params.filter = this.filterModel;
     }
 
-    if (this.page) {
+    if (_.isFinite(this.page)) {
       params.page = this.page;
     }
 
-    if (this.perPage) {
+    if (_.isFinite(this.perPage)) {
       params.perPage = this.perPage;
     }
 
@@ -46,6 +52,6 @@ export default class BaseCollection extends Collection {
   }
 }
 
-BaseCollection.prototype.$ = $.ajax;
-BaseCollection.prototype.apiRoot = config.api_root || config._client.api_root;
-BaseCollection.prototype.idAttribute = '_id';
+PaginatedCollection.prototype.$ = $.ajax;
+PaginatedCollection.prototype.apiRoot = config.api_root || config._client.api_root;
+PaginatedCollection.prototype.idAttribute = '_id';
