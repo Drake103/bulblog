@@ -90,6 +90,7 @@ export default class ModelController extends Controller {
 
     if ((this.filterableFields || {}).length) {
       filters = this.getListFilters(req);
+      filters = _.assign(filters, this.getFilterForAll(req));
     }
 
     if (this.getCustomListFilters) {
@@ -223,5 +224,38 @@ export default class ModelController extends Controller {
     if (contains(this.sortableFields, field)) {
       return req.query.order;
     }
+  }
+
+  getFilterForAll(req) {
+    let filter = { };
+    if (!(this.filterableFields || {}).length) return filter;
+
+    let filterText = this.getFilterValueForAll(req);
+
+    if (filterText !== null) {
+      filter = { $or: [] };
+
+      _.forEach(this.filterableFields, x => {
+        let filterObj = {};
+        filterObj[x] = { $regex: filterText, $options: 'i' };;
+        filter.$or.push(filterObj);
+      });
+    }
+
+    return filter;
+  }
+
+  getFilterValueForAll(req) {
+    for (let key in req.query) {
+      if (key !== '_all') {
+        continue;
+      }
+
+      let val = req.query[key];
+      if (!val) return null;
+      return val;
+    }
+
+    return null;
   }
 }

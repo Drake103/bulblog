@@ -11,6 +11,7 @@ class PostStore extends EntityStore {
       handleUpdatePage: PostActions.UPDATE_PAGE,
       handleUpdatePerPage: PostActions.UPDATE_PER_PAGE,
       handleUpdateMaxPages: PostActions.UPDATE_MAX_PAGES,
+      handleUpdateFilter: PostActions.UPDATE_FILTER,
     });
   }
 }

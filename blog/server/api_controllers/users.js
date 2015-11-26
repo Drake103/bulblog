@@ -2,9 +2,8 @@ import _ from 'lodash';
 import ModelController from '../base/model_controller';
 import User from '../models/user';
 
-
 export default class UsersController extends ModelController {
-  constructor () {
+  constructor() {
     super();
     this.logPrefix = 'users-controller';
     this.urlPrefix = '/users';
@@ -21,7 +20,7 @@ export default class UsersController extends ModelController {
     this.list.auth = true;
   }
 
-  get (req, res, next) {
+  get(req, res, next) {
     var username = req.params.username;
 
     if (username !== 'profile') {
@@ -43,7 +42,7 @@ export default class UsersController extends ModelController {
     });
   }
 
-  create (req, res, next) {
+  create(req, res, next) {
     if (req.authorized) {
       return this.notFound(res);
     }
@@ -67,7 +66,7 @@ export default class UsersController extends ModelController {
           return this.error(res, 'user_exist', 409);
         }
 
-        model.save(function (err, doc) {
+        model.save(function(err, doc) {
           if (err) {
             return next(err);
           }
@@ -79,7 +78,7 @@ export default class UsersController extends ModelController {
     });
   }
 
-  list (...args) {
+  list(...args) {
     super.list(...args);
   }
 }

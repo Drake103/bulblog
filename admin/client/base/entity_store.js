@@ -7,7 +7,7 @@ export default class EntityStore {
     this.perPage = 10;
     this.maxPages = 0;
     this.loading = false;
-    this.filter = null;
+    this.filter = {};
 
     this._bindListeners();
   }
@@ -41,7 +41,7 @@ export default class EntityStore {
     this.maxPages = maxPages;
   }
 
-  handleSetFilter(filter) {
+  handleUpdateFilter(filter) {
     this.filter = filter;
   }
 }
