@@ -10,6 +10,7 @@ export default class PostsController extends ModelController {
     this.Model = PostModel;
     this.actions = ['create', 'get', 'list'];
     this.listFields = ['title', 'content', 'tags', 'slug', 'created_at', 'modified_at', '__v'];
+    this.filterableFields = ['title', 'content', 'slug'];
 
     this.create.type = 'post';
 

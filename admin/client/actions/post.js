@@ -3,7 +3,7 @@ import PostCollection from '../collections/post';
 
 class PostActions {
   constructor() {
-    this.generateActions('updateEntities', 'entitiesFailed', 'updatePage', 'updatePerPage', 'updateMaxPages', 'setFilter');
+    this.generateActions('updateEntities', 'entitiesFailed', 'updatePage', 'updatePerPage', 'updateMaxPages', 'updateFilter');
   }
 
   fetchEntities(page, perPage, filter) {
@@ -13,16 +13,13 @@ class PostActions {
 
     posts.page = +page;
     posts.perPage = +perPage;
+    posts.filterModel = filter;
 
-    //posts.filterModel = filter;
+    this.actions.updateFilter(filter);
 
     posts.fetch()
       .done(() => {
         let entities = posts.toJSON();
-        console.log(posts.page);
-        console.log(posts.perPage);
-        console.log(Math.ceil(posts.total / posts.perPage));
-        console.log(entities);
         this.actions.updatePage(posts.page - 1);
         this.actions.updatePerPage(posts.perPage);
         this.actions.updateMaxPages(Math.ceil(posts.total / posts.perPage));

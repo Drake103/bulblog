@@ -10,7 +10,8 @@ export default class DataGrid extends Component {
   constructor() {
     super();
 
-    _.bindAll(this, 'getExternalData', 'setPage', 'onChange');
+    _.bindAll(this, 'componentDidMount', 'componentWillUnmount',
+      'getExternalData', 'setPage', 'onChange', 'setFilter', 'setPageSize');
   }
 
   initState() {
@@ -37,8 +38,10 @@ export default class DataGrid extends Component {
   setPage(index) {
     //This should interact with the data source to get the page at the given index
     index = index > this.state.maxPages ? this.state.maxPages : index < 1 ? 1 : index + 1;
-    PostActions.updatePage(index);
-    this.getExternalData(index);
+    let page = index;
+    let perPage = this.state.perPage;
+    let filter = this.state.filter;
+    PostActions.fetchEntities(page, perPage, filter);
   }
 
   //this will handle how the data is sorted
@@ -49,12 +52,17 @@ export default class DataGrid extends Component {
 
   //this method handles the filtering of the data
   setFilter(filter) {
-    PostActions.setFilter(filter);
+    let filterModel = { all: filter };
+    let page = 1;
+    let perPage = this.state.perPage;
+    PostActions.fetchEntities(page, perPage, filterModel);
   }
 
   //this method handles determining the page size
   setPageSize(perPage) {
-    PostActions.updatePerPage(perPage);
+    let page = 1;
+    let filter = this.state.filter;
+    PostActions.fetchEntities(page, perPage, filter);
   }
 
   getExternalData(page) {
@@ -67,13 +75,13 @@ export default class DataGrid extends Component {
 
   render() {
     return (
-      <Griddle useGriddleStyles={false} tableClassName='table'
+      <Griddle
         useExternal={true} externalSetPage={this.setPage} externalChangeSort={this.changeSort}
         externalSetFilter={this.setFilter} externalSetPageSize={this.setPageSize}
         externalMaxPage={this.state.maxPages} externalCurrentPage={this.state.page}
         results={this.state.results} resultsPerPage={this.state.perPage}
         externalSortColumn={this.state.externalSortColumn} externalSortAscending={this.state.externalSortAscending}
-        showFilter={true} showSettings={false}/>
+        showFilter={true} showSettings={true}/>
     );
   }
 };
